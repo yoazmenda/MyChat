@@ -1,2 +1,16 @@
 apply plugin: 'application'
-mainClassName = "com.MyChatCompany.MyChat.MyChat"
+mainClassName = "com.company.utils.BeanFactory/com.company.utils.BeanFactory"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.3.11.v20160721'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.3.4'
+
+
+
+}
