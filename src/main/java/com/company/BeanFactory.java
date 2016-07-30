@@ -1,11 +1,12 @@
-package com.MyBeanFactory.BeanFactory;
+package com.company;
 
 
-import com.MyBeanFactory.annotations.Bean;
-import com.MyBeanFactory.annotations.Configuration;
-import com.MyBeanFactory.annotations.Inject;
-import com.MyBeanFactory.exp.NoSuchBeanException;
-import com.MyBeanFactory.annotations.Component;
+import com.company.annotations.Bean;
+import com.company.annotations.Inject;
+import com.company.utils.ClassFinder;
+import com.company.annotations.Configuration;
+import com.company.exp.NoSuchBeanException;
+import com.company.annotations.Component;
 
 import java.lang.reflect.*;
 import java.util.Arrays;
@@ -17,9 +18,9 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 
-public class ApplicationContext {
+public class BeanFactory {
 
-    private static final Logger log = Logger.getLogger(ApplicationContext.class.getName());
+    private static final Logger log = Logger.getLogger(BeanFactory.class.getName());
 
     private static int MAX_BEANS = 100;
     private static Map<Class<?>, Object> beans;
@@ -28,7 +29,7 @@ public class ApplicationContext {
     private static Map<Class<?>, CustomConstructor> customBeans;
 
 
-    public ApplicationContext(String baseDir) {
+    public BeanFactory(String baseDir) {
         beans = new HashMap<>();
         customBeans = new HashMap<>();
         beanNames = new String[MAX_BEANS];

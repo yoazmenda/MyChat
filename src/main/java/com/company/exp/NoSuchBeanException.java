@@ -1,4 +1,4 @@
-package com.MyBeanFactory.exp;
+package com.company.exp;
 
 /**
  * Created by yoaz on 7/29/2016.

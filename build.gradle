@@ -1,5 +1,5 @@
 apply plugin: 'application'
-mainClassName = "com.company.utils.BeanFactory/com.company.utils.BeanFactory"
+mainClassName = "com.company.utils.company/com.company.utils.company"
 
 repositories {
     mavenCentral()

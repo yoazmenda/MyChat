@@ -1,4 +1,4 @@
-package com.MyBeanFactory.BeanFactory;
+package com.company.utils;
 
 import java.io.File;
 import java.net.URL;

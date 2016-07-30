@@ -1,4 +1,4 @@
-package com.MyBeanFactory.annotations;
+package com.company.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
