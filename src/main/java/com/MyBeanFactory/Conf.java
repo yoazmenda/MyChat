@@ -1,4 +1,4 @@
-package com.MyBeanFactory.exp;
+package com.MyBeanFactory;
 
 import com.MyBeanFactory.D;
 import com.MyBeanFactory.annotations.Bean;

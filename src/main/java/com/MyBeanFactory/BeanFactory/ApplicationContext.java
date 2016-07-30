@@ -63,10 +63,18 @@ public class ApplicationContext {
                 Method[] methods = clazz.getMethods();
                 List<Method> customBeansMethods = Arrays.stream(methods).filter(method -> method.isAnnotationPresent(Bean.class)).collect(Collectors.toList());
                 for (Method method : customBeansMethods){
-                    Class<?> returnType = method.getReturnType();
-                    Parameter[] params  = method.getParameters();
-                    CustomConstructor ctor = new CustomConstructor(params, returnType, method);
-                    customBeans.put(returnType,ctor);
+                    Class<?> beanType = method.getReturnType();
+                    try {
+                        Object bean = method.invoke(clazz.newInstance(),method.getParameters());
+                        beanNames[beanCount++] = clazz.getName();
+                        beans.put(beanType, bean);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -131,12 +139,15 @@ public class ApplicationContext {
         Object bean = null;
         try {
             CustomConstructor customConstructor = customBeans.get(bean);
-            if (customConstructor == null) {
+
+            // user empty constructor
+//            if (customConstructor == null) {
                 bean = clazz.newInstance();
-            }
-            else {
-                Constructor<?> constructor = new Constructor<?>(customConstructor.getClass(), );
-            }
+//            }
+            // use non-empty constructor def
+//            else {
+//                Constructor<?> constructor = new Constructor<?>(customConstructor.getClass(), );
+//            }
         } catch (InstantiationException e) {
             log.log(Level.SEVERE, "Error while instantiating bean: " + clazz.getName());
             System.exit(-1);
