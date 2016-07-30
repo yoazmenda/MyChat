@@ -143,7 +143,11 @@ public class BeanFactory {
 
             // user empty constructor
 //            if (customConstructor == null) {
-                bean = clazz.newInstance();
+            Constructor<?>[] ctors = clazz.getDeclaredConstructors();
+            List<Constructor> emptyCtors = Arrays.asList(ctors).stream().filter(constructor -> constructor.getParameterCount()==0).collect(Collectors.toList());
+            emptyCtors.forEach(constructor -> constructor.setAccessible(true));
+
+            bean = clazz.newInstance();
 //            }
             // use non-empty constructor def
 //            else {
